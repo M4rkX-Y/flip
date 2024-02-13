@@ -10,7 +10,7 @@ public:
     friend std::ostream &operator<<(std::ostream &out, const deck &d);
 
 private:
-    card *front;
+    card *top;
 };
 
 #endif

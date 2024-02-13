@@ -4,12 +4,12 @@
 deck::deck()
 {
     char suits[4] = {'c', 'd', 'h', 's'};
-    front = NULL;
+    top = NULL;
     for (int i = 4; i > 0; i--)
     {
         for (int j = 13; j > 0; j--)
         {
-            addCard(j, suits[i - 1], front);
+            addCard(j, suits[i - 1], top);
         }
     }
 }
@@ -17,16 +17,16 @@ deck::deck()
 void deck::addCard(int v, char s, card *h)
 {
     card *tmp = new card(v, s, h);
-    front = tmp;
+    top = tmp;
 }
 
 void deck::shuffle()
 {
     srand(time(0));
-    card *tmp_front = NULL;
+    card *tmp_top = NULL;
     for (int i = 52; i > 0; i--)
     {
-        card *curr = front;
+        card *curr = top;
         card *prev = NULL;
         int r = rand() % i;
         for (int j = 0; j < r; j++)
@@ -36,22 +36,22 @@ void deck::shuffle()
         }
         if (prev == NULL)
         {
-            front = front->getNext();
+            top = top->getNext();
         }
         else
         {
             prev->setNext(curr->getNext());
         }
-        card *tmp = new card(curr->getValue(), curr->getSuit(), tmp_front);
-        tmp_front = tmp;
+        card *tmp = new card(curr->getValue(), curr->getSuit(), tmp_top);
+        tmp_top = tmp;
         delete curr;
     }
-    front = tmp_front;
+    top = tmp_top;
 }
 
 std::ostream &operator<<(std::ostream &out, const deck &d)
 {
-    card *curr = d.front;
+    card *curr = d.top;
     while (curr != NULL)
     {
         out << "Card Value: " << curr->getValue() << " Suit: " << curr->getSuit() << std::endl;
