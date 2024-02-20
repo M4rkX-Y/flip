@@ -134,6 +134,7 @@ void playFlip(deck &d)
             }
             std::cout << "Your total points: " << points << std::endl;
             std::cout << "You have " << 23 - i << "/24 cards left." << std::endl;
+            delete c;
         }
         else if (input == 2)
         {
