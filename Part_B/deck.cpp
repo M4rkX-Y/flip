@@ -99,6 +99,8 @@ void playFlip(deck &d)
     int i = 0;
     int points = 0;
     d.shuffle();
+    std::cout << "Entire Deck After Shuffle: " << std::endl;
+    std::cout << d << std::endl;
     while (i < 24)
     {
         int input;
@@ -107,10 +109,9 @@ void playFlip(deck &d)
         if (input == 1)
         {
             card *c = d.deal();
-
             int value = c->getValue();
             char suit = c->getSuit();
-            std::cout << "You got card value : " << value << "  suit : " << suit << std::endl;
+            std::cout << "Current hand card value : " << value << "  suit : " << suit << std::endl;
             if (value == 1)
             {
                 points += 10;
